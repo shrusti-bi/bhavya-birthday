@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Dove Birthday</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@400;600&display=swap"
+rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+
+
+<body>
+
+
+<div id="wrapper">
+
+<!-- FLAGS -->
+
+<div class="flag__birthday">
+<img src="./images/1.png" width="350" class="flag__left">
+<img src="./images/1.png" width="350" class="flag__right">
+</div>
+
+
+<div class="content">
+
+<!-- LEFT SIDE -->
+
+<div class="left">
+
+<div class="title">
+
+<h1 class="happy">
+<span style="--t:4s;">H</span>
+<span style="--t:4.2s;">a</span>
+<span style="--t:4.4s;">p</span>
+<span style="--t:4.6s;">p</span>
+<span style="--t:4.8s;">y</span>
+</h1>
+
+<h1 class="birthday">
+<span style="--t:5s;">B</span>
+<span style="--t:5.2s;">i</span>
+<span style="--t:5.4s;">r</span>
+<span style="--t:5.6s;">t</span>
+<span style="--t:5.8s;">h</span>
+<span style="--t:6s;">d</span>
+<span style="--t:6.2s;">a</span>
+<span style="--t:6.4s;">y</span>
+</h1>
+
+<div class="hat">
+<img src="./images/hat.png" width="130">
+</div>
+
+</div>
+
+
+<div class="date__of__birth">
+<span></span>
+</div>
+
+
+<div class="btn">
+
+<button id="btn__letter">
+<div class="mail">
+Click Here Bhavya
+<i class="fa-regular fa-envelope"></i>
+</div>
+</button>
+<div class="extra-buttons">
+
+<a href="memories.html">
+<button class="main-btn">📷 Memories</button>
+</a>
+
+<a href="surprise.html">
+<button class="main-btn">🎁 Surprise</button>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT SIDE -->
+
+<div class="right">
+
+<div class="box__account">
+
+<div class="image">
+<img src="./images/bhvi1.jpeg">
+</div>
+
+<div class="name">
+<i class="fa-solid fa-heart"></i>
+<span>Dear Bhavya</span>
+<i class="fa-solid fa-heart"></i>
+</div>
+
+<div class="balloon_one">
+<img width="100" src="./images/balloon1.png">
+</div>
+
+<div class="balloon_two">
+<img width="100" src="./images/balloon2.png">
+</div>
+
+</div>
+
+
+<div class="cricle">
+
+<div class="text__cricle">
+<span style="--i:1;">h</span>
+<span style="--i:2;">a</span>
+<span style="--i:3;">p</span>
+<span style="--i:4;">p</span>
+<span style="--i:5;">y</span>
+<span style="--i:6;">-</span>
+<span style="--i:7;">b</span>
+<span style="--i:8;">i</span>
+<span style="--i:9;">r</span>
+<span style="--i:10;">t</span>
+<span style="--i:11;">h</span>
+<span style="--i:12;">d</span>
+<span style="--i:13;">a</span>
+<span style="--i:14;">y</span>
+<span style="--i:15;">-</span>
+</div>
+
+<i class="fa-solid fa-heart"></i>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DECORATIONS -->
+
+<div class="decorate_star star1"></div>
+<div class="decorate_star star2"></div>
+<div class="decorate_star star3"></div>
+
+<div class="decorate_bottom">
+<img src="./images/decorate.png" width="100">
+</div>
+
+<div class="smiley__icon">
+<img src="./images/smiley_icon.png" width="100">
+</div>
+
+
+<!-- LETTER POPUP -->
+
+<div class="boxMail">
+
+<i class="fa-solid fa-xmark"></i>
+
+<div class="boxMail-container">
+
+<div class="card1">
+
+<div class="userImg">
+<img src="images/bhvi.jpeg">
+</div>
+
+<h4 class="username">
+To: My Dove 💖
+<span class="underline"></span>
+</h4>
+
+<h3>Happy Birthday</h3>
+
+</div>
+
+
+<div class="card2">
+
+<div class="card2-content">
+
+<h3>To You!
+  my Dove</h3>
+
+<h2>
+Happy Birthday to my Dovey 💖🎉
+
+May this year be the best for you 🌸✨ and may all your dreams come true 🌈💭 My doveee 🥺💗, you deserve the whole world 🌍👑
+
+I’m so glad you’re my friend—my baby girl 💕🫶 Even if we don’t spend much time, every moment with you is special 💫🥰
+
+Please don’t forget me after college 😭💔 Stay in touch always 📱💬
+
+I love you 💖♾️ Happy birthday once again my doveyyyyy 🎂💫 Enjoy your day 🥳💃
+
+
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+let datetxt = "22 March";
+let charArrDate = datetxt.split('');
+
+let currentIndex = 0;
+
+let date__of__birth = document.querySelector(".date__of__birth span");
+
+setInterval(function(){
+
+if(currentIndex < charArrDate.length){
+
+date__of__birth.textContent += charArrDate[currentIndex];
+currentIndex++;
+
+}
+
+},100);
+
+
+let mailBox = document.querySelector('.mail');
+let boxmail = document.querySelector('.boxMail');
+let close = document.querySelector('.fa-xmark');
+
+mailBox.onclick = function(){
+boxmail.classList.add('active');
+}
+
+close.onclick = function(){
+boxmail.classList.remove('active');
+}
+
+</script>
+<canvas id="heartCanvas"></canvas>
+
+<script>
+
+const canvas = document.getElementById("heartCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let hearts = [];
+
+document.addEventListener("mousemove", function(e){
+
+for(let i=0;i<2;i++){
+
+hearts.push({
+x:e.clientX,
+y:e.clientY,
+size:Math.random()*10+5,
+speedY:Math.random()*2+1,
+alpha:1
+})
+
+}
+
+})
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+for(let i=0;i<hearts.length;i++){
+
+let h = hearts[i];
+
+ctx.fillStyle="rgba(255,0,100,"+h.alpha+")";
+
+ctx.beginPath();
+ctx.arc(h.x,h.y,h.size,0,Math.PI*2);
+ctx.fill();
+
+h.y -= h.speedY;
+h.alpha -= 0.01;
+
+if(h.alpha<=0){
+hearts.splice(i,1);
+}
+
+}
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+</script>
+<canvas id="stars"></canvas>
+
+<script>
+    
+
+const starCanvas = document.getElementById("stars");
+const starCtx = starCanvas.getContext("2d");
+
+starCanvas.width = window.innerWidth;
+starCanvas.height = window.innerHeight;
+
+let stars = [];
+
+for(let i=0;i<120;i++){
+
+stars.push({
+x:Math.random()*starCanvas.width,
+y:Math.random()*starCanvas.height,
+size:Math.random()*2,
+speed:Math.random()*0.5
+})
+
+}
+
+function animateStars(){
+
+starCtx.clearRect(0,0,starCanvas.width,starCanvas.height);
+
+stars.forEach(star =>{
+
+starCtx.fillStyle="white";
+starCtx.beginPath();
+starCtx.arc(star.x,star.y,star.size,0,Math.PI*2);
+starCtx.fill();
+
+star.y += star.speed;
+
+if(star.y > starCanvas.height){
+star.y = 0;
+star.x = Math.random()*starCanvas.width;
+}
+
+})
+
+requestAnimationFrame(animateStars);
+
+}
+
+animateStars();
+
+document.addEventListener("click", function(){
+
+let music = document.getElementById("bgMusic");
+
+if(music.paused){
+music.volume = 0.3;
+music.play();
+}
+
+});
+
+
+</script>
+
+<marquee behavior="alternate">
+Happy Birthday Bhavya ❤️ Stay blessed always!
+</marquee>
+
+<footer class="footer">
+Made with ❤️ for Bhavya | Happy Birthday 🎂
+</footer>
+
+<audio id="bgMusic" loop>
+<source src="bday.mp3" type="audio/mpeg">
+</audio>
+
+<marquee id="popupText" behavior="alternate"></marquee>
+<script>
+
+function openImage(img){
+
+let popup = document.getElementById("imagePopup");
+let popupImg = document.getElementById("popupImg");
+let popupText = document.getElementById("popupText");
+
+popup.style.display = "flex";
+popupImg.src = img.src;
+
+popupText.innerText = img.getAttribute("data-msg");
+
+}
+
+function closeImage(){
+document.getElementById("imagePopup").style.display = "none";
+}
+
+function createBalloon(){
+    let balloon = document.createElement('div');
+    balloon.innerText='🎈';
+    balloon.style.position='absolute';
+    balloon.style.left = Math.random()*window.innerWidth+'px';
+    balloon.style.fontSize = (20+Math.random()*30)+'px';
+    balloon.style.pointerEvents='none';
+    balloon.style.zIndex='-1';
+    document.body.appendChild(balloon);
+    balloon.animate([{transform:'translateY(0px)'},{transform:'translateY(-600px)'}],{
+        duration:5000+Math.random()*5000,
+        easing:'linear'
+    }).onfinish = ()=> balloon.remove();
+}
+setInterval(createBalloon, 1500);
+
+</script>
+
+</body>
+</html>

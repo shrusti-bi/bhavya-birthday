@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memories</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family: 'Poppins', sans-serif;
+    text-align:center;
+    padding:40px;
+    overflow-x:hidden;
+}
+
+.title{
+    font-size:40px;
+    color:white;
+    margin-bottom:40px;
+}
+
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+.gallery img{
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    transition:0.4s;
+    cursor:pointer;
+}
+
+.gallery img:hover{
+    transform:scale(1.1) rotate(2deg);
+}
+
+.backBtn{
+    margin-top:40px;
+    padding:12px 25px;
+    border:none;
+    background:#ff4d6d;
+    color:white;
+    font-size:18px;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.backBtn:hover{
+    background:#ff1e4d;
+}
+
+/* popup viewer */
+.popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    z-index:999;
+    animation: pulseBG 3s infinite alternate;
+}
+
+@keyframes pulseBG{
+    0% {background: rgba(0,0,0,0.85);}
+    50% {background: rgba(255, 105, 180,0.7);}
+    100% {background: rgba(0,0,0,0.85);}
+}
+
+.popup img{
+    max-width:80%;
+    max-height:80%;
+    border-radius:15px;
+    box-shadow: 0 0 50px rgba(255,255,255,0.5);
+    transform: scale(0.8);
+    animation: zoomGlow 0.6s forwards;
+}
+
+@keyframes zoomGlow{
+    to { transform: scale(1); }
+}
+
+.close{
+    position:absolute;
+    top:30px;
+    right:40px;
+    font-size:45px;
+    color:white;
+    cursor:pointer;
+}
+
+.popupText{
+    color:white;
+    font-size:24px;
+    margin-top:20px;
+    max-width:80%;
+    text-align:center;
+    white-space:pre-wrap;
+    font-weight:500;
+    opacity:0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+/* Confetti */
+.confetti-piece{
+    position:absolute;
+    width:10px;
+    height:10px;
+    background: randomColor;
+    opacity:0.8;
+    pointer-events:none;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform: translateY(100vh) rotate(360deg);
+        opacity:0;
+    }
+}
+</style>
+</head>
+<body>
+
+<h1 class="title">📸 Beautiful Memories</h1>
+
+<!-- Slideshow -->
+<div class="slideshow">
+    <img id="slide" src="img1.jpg" width="300">
+</div>
+
+<script>
+let images = ["img1.jpg","img2.jpg","img3.jpg"];
+let i = 0;
+
+setInterval(function(){
+    i++;
+    if(i >= images.length) i = 0;
+    document.getElementById("slide").src = images[i];
+},2000);
+</script>
+
+<!-- Gallery -->
+<div class="gallery">
+    <img src="images/us1.jpeg" onclick="openImage(this)" data-msg="This picture will always have my ❤️ forever">
+    <img src="images/us2.jpeg" onclick="openImage(this)" data-msg="It isnt the prefect picture but the moment is something i really love we were so shocked and happy at the same time so yea cheers to us...😂">
+    <img src="images/us3.jpeg" onclick="openImage(this)" data-msg="This is literally the first picture we clicked together just look at us✨">
+    <img src="images/us4.jpeg" onclick="openImage(this)" data-msg="More memories to create together🎉so yea lets create more memories with or without picture i will still love you...">
+</div>
+
+<!-- Popup Viewer -->
+<div id="imagePopup" class="popup">
+    <span class="close" onclick="closeImage()">&times;</span>
+    <img id="popupImg">
+    <div id="popupText" class="popupText"></div>
+</div>
+
+<script>
+let typingTimeout;
+
+// Generate confetti
+function createConfetti(){
+    for(let i=0;i<50;i++){
+        let confetti = document.createElement("div");
+        confetti.classList.add("confetti-piece");
+        confetti.style.background = `hsl(${Math.random()*360}, 100%, 70%)`;
+        confetti.style.left = Math.random()*100 + "vw";
+        confetti.style.top = "-20px";
+        confetti.style.width = Math.random()*8 + 6 + "px";
+        confetti.style.height = confetti.style.width;
+        confetti.style.animationDuration = (2 + Math.random()*2) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(()=> confetti.remove(), 3000);
+    }
+}
+
+function openImage(img){
+    let popup = document.getElementById("imagePopup");
+    let popupImg = document.getElementById("popupImg");
+    let popupText = document.getElementById("popupText");
+
+    popup.style.display = "flex";
+    popupImg.src = img.src;
+
+    // Fade + float typewriter
+    popupText.style.opacity = 0;
+    popupText.style.transform = "translateY(20px)";
+    popupText.innerText = "";
+    setTimeout(()=>{ 
+        popupText.style.opacity = 1; 
+        popupText.style.transform = "translateY(0)"; 
+    }, 50);
+
+    let message = img.getAttribute("data-msg");
+    let index = 0;
+    clearInterval(typingTimeout);
+    typingTimeout = setInterval(function(){
+        if(index < message.length){
+            popupText.innerText += message.charAt(index);
+            index++;
+        } else {
+            clearInterval(typingTimeout);
+        }
+    }, 50);
+
+    createConfetti(); // trigger confetti
+}
+
+function closeImage(){
+    document.getElementById("imagePopup").style.display = "none";
+    clearInterval(typingTimeout);
+}
+</script>
+
+<!-- Back Button -->
+<br>
+<a href="index.html">
+    <button class="backBtn">⬅ Back to Birthday Page</button>
+</a>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+    <source src="bday.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let music = document.getElementById("bgMusic");
+document.body.addEventListener("click", function () {
+    if(music.paused){
+        music.volume = 0.3;
+        music.play();
+    }
+});
+</script>
+
+</body>
+</html>
